@@ -31,11 +31,10 @@ body {
 .topRight {
   grid-column: 2/3;
   grid-row: 1/2;
-  padding-right: 84px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 18px;
+  gap: 10px;
 }
 .bottom {
   grid-column: 1/3;
@@ -109,7 +108,7 @@ body {
 .rightItem {
   background-color: #0171a3dd;
   color: var(--light);
-  padding: 12px 16px;
+  padding: 8px 8px;
   border-radius: 8px;
   display: grid;
   column-gap: 8px;
@@ -118,20 +117,20 @@ body {
   grid-row: 1/3;
   grid-column: 1/2;
   align-self: center;
-  height: 32px;
+  height: 24px;
 }
 .rightItem .desc {
   grid-row: 1/2;
   grid-column: 2/3;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
 }
 .rightItem .value {
   grid-row: 2/3;
   grid-column: 2/3;
   text-align: center;
-  padding-top: 2px;
-  font-size: 24px;
+  padding-top: 0px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -141,6 +140,10 @@ body {
     background-image: url(assets/bg-desktop.jpg);
     font-size: 18px;
     padding: 18px;
+  }
+  .topRight{
+    padding-right: 60px;
+    gap: 18px;
   }
   .logo {
     background-color: #0171a377;
@@ -172,5 +175,18 @@ body {
     position: absolute;
     top: 6px;
     right: 0;
+  }
+  .rightItem {
+    padding: 12px 16px;
+  }
+  .rightItem img {
+    height: 32px;
+  }
+  .rightItem .desc {
+    font-size: 14px;
+  }
+  .rightItem .value {
+    padding-top: 2px;
+    font-size: 24px;
   }
 }
