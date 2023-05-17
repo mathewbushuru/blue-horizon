@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Righteous&display=swap");
+:root {
+  --primary: #0171a3;
+  --light: #f6fbfe;
+}
 body {
   height: 100vh;
   height: 100lvh;
@@ -7,6 +12,8 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  font-family: "Nunito", sans-serif;
+  padding: 2px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 2fr 1fr;
@@ -14,6 +21,9 @@ body {
 .topLeft {
   grid-column: 1/2;
   grid-row: 1/2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .topRight {
   grid-column: 2/3;
@@ -23,9 +33,25 @@ body {
   grid-column: 1/3;
   grid-row: 2/3;
 }
+.logo {
+  color: var(--light);
+  background-color: #0171a399;
+  padding: 8px;
+  border-radius: 8px;
+  font-family: 'Righteous', cursive;
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: 2.5px;
+}
 
 @media screen and (min-width: 640px) {
   body {
     background-image: url(assets/bg-desktop.jpg);
+    padding: 18px;
+  }
+  .logo {
+    background-color: #0171a377;
+    font-size: 36px;
+    letter-spacing: 2.5px;
   }
 }
