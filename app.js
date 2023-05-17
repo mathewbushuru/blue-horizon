@@ -4,7 +4,7 @@
 const KEY = "3cc93a01996d4195b8f85813231405";
 
 // constants
-const API_URL = "http://api.weatherapi.com/v1";
+const API_URL = "https://api.weatherapi.com/v1";
 const API_URL_CURRENT = `${API_URL}/current.json?key=${KEY}`;
 const API_URL_FORECAST = `${API_URL}/forecast.json?key=${KEY}`;
 const API_URL_SEARCH = `${API_URL}/search.json?key=${KEY}`;
