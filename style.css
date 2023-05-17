@@ -67,6 +67,40 @@ body {
   font-size: 12px;
   font-weight: 600;
 }
+.temp {
+  color: var(--light);
+  background-color: #0171a399;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+.search {
+  position: relative;
+}
+.search input {
+  background: inherit;
+  background-color: #0171a399;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 8px;
+  color: var(--light);
+  font: inherit;
+  font-size: 16px;
+  outline: none;
+  width: 75%;
+}
+.search input::placeholder {
+  color: var(--light);
+  font-size: 14px;
+}
+.search button {
+  display: none;
+}
+.search button img {
+  width: 16px;
+}
 
 @media screen and (min-width: 640px) {
   body {
@@ -87,5 +121,22 @@ body {
   }
   .conditions .time {
     font-size: 14px;
+  }
+  .temp {
+    font-size: 28px;
+  }
+  .search input {
+    padding: 6px 8px;
+    width: 100%;
+  }
+  .search button {
+    display: block;
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    position: absolute;
+    top: 6px;
+    right: 0;
   }
 }
