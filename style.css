@@ -13,6 +13,8 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
   padding: 2px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -24,6 +26,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 18px;
 }
 .topRight {
   grid-column: 2/3;
@@ -38,20 +41,51 @@ body {
   background-color: #0171a399;
   padding: 8px;
   border-radius: 8px;
-  font-family: 'Righteous', cursive;
+  font-family: "Righteous", cursive;
   font-weight: 400;
   font-size: 24px;
   letter-spacing: 2.5px;
+}
+.conditions {
+  color: var(--light);
+  background-color: #0171a399;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.conditions .desc {
+  font-size: 20px;
+  font-weight: 700;
+}
+.conditions .location {
+  font-size: 16px;
+  font-weight: 600;
+}
+.conditions .time {
+  font-size: 12px;
+  font-weight: 600;
 }
 
 @media screen and (min-width: 640px) {
   body {
     background-image: url(assets/bg-desktop.jpg);
+    font-size: 18px;
     padding: 18px;
   }
   .logo {
     background-color: #0171a377;
     font-size: 36px;
     letter-spacing: 2.5px;
+  }
+  .conditions .desc {
+    font-size: 24px;
+  }
+  .conditions .location {
+    font-size: 18px;
+  }
+  .conditions .time {
+    font-size: 14px;
   }
 }
