@@ -6,7 +6,7 @@
 body {
   height: 100vh;
   height: 100lvh;
-  width: 100vw;
+  /* width: 100vw; */
   overflow: hidden;
   background-image: url(assets/bg-mobile.jpg);
   background-position: center;
@@ -142,7 +142,7 @@ body {
     padding: 18px;
   }
   .topRight{
-    padding-right: 60px;
+    /* padding-right: 60px; */
     gap: 18px;
   }
   .logo {
