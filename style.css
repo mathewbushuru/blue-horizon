@@ -107,7 +107,7 @@ body {
   width: 16px;
 }
 .rightItem {
-  background-color: #0171a3dd;
+  background-color: #0171a3bb;
   color: var(--light);
   padding: 8px 8px;
   border-radius: 8px;
@@ -180,6 +180,7 @@ body {
   }
   .rightItem {
     padding: 12px 16px;
+    background-color: #0171a3dd;
   }
   .rightItem img {
     height: 32px;
