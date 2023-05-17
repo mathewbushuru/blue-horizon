@@ -30,11 +30,11 @@ function processWeatherData(apiData) {
   const appData = {
     weather: {
       conditionDesc: weatherData.condition.text,
-      conditionIconUrl: weatherData.condition.icon,
+      conditionIconUrl: weatherData.condition.icon.split("//")[1],
       feelslike_c: weatherData.feelslike_c,
       feelslike_f: weatherData.feelslike_f,
       humidity: weatherData.humidity,
-      last_updated: weatherData.last_updated,
+      last_updated: weatherData.last_updated.split(" ")[1],
       rain: weatherData.precip_mm,
       temp_c: weatherData.temp_c,
       temp_f: weatherData.temp_f,
