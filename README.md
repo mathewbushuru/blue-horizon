@@ -8,4 +8,6 @@ This is a weather forecast app using [WeatherAPI](https://www.weatherapi.com/).
 - [x] Vancouver realtime weather
 - [x] Search functionality for any city's weather
 - [x] Hourly forecast
-- [ ] Loading state
+- [ ] Loading state animation
+
+![demo](./assets/screenshot.jpg)

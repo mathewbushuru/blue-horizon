@@ -143,9 +143,11 @@ function renderDOM(appData, hourlyForecast) {
 
 // location search function
 async function searchLocation(city = defaultCity) {
-  const apiData = await getCurrentWeather(city);
-  const appData = processWeatherData(apiData);
-  const apiForecastData = await getForecastWeather(city);
+  const [apiCurrentData, apiForecastData] = await Promise.all([
+    getCurrentWeather(city),
+    getForecastWeather(city),
+  ]);
+  const appData = processWeatherData(apiCurrentData);
   const hourlyForecast = processForecastData(apiForecastData);
   renderDOM(appData, hourlyForecast);
   searchInp.value = "";
@@ -159,12 +161,13 @@ searchForm.addEventListener("submit", handleSubmit);
 
 // init app
 window.addEventListener("DOMContentLoaded", async () => {
-  const apiCurrentData = await getCurrentWeather();
-  const appCurrentData = processWeatherData(apiCurrentData);
+  const [apiCurrentData, apiForecastData] = await Promise.all([
+    getCurrentWeather(),
+    getForecastWeather(),
+  ]);
 
-  const apiForecastData = await getForecastWeather();
+  const appCurrentData = processWeatherData(apiCurrentData);
   const hourlyForecast = processForecastData(apiForecastData);
-  console.log(hourlyForecast);
 
   renderDOM(appCurrentData, hourlyForecast);
 });
