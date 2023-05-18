@@ -7,9 +7,5 @@ This is a weather forecast app using [WeatherAPI](https://www.weatherapi.com/).
 - [x] Mobile responsive
 - [x] Vancouver realtime weather
 - [x] Search functionality for any city's weather
-- [ ] Next 7 days forecast
-- [ ] Hourly forecast
-- [ ] Toggle Fahr and Celsius
+- [x] Hourly forecast
 - [ ] Loading state
-- [ ] Search functionality using postal code, IP address, Lat/long
-- [ ] Show public weather alerts

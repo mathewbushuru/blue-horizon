@@ -66,7 +66,7 @@ function processWeatherData(apiData) {
 }
 
 // process forecast data
-function processForecastData(apiForecastData) { 
+function processForecastData(apiForecastData) {
   const completeHourlyForecast = apiForecastData.forecast.forecastday[0].hour;
   const eachThreeHrForecast = completeHourlyForecast.filter((value, index) => {
     return index % 3 == 0;
@@ -96,9 +96,10 @@ const windDiv = document.getElementById("wind");
 const searchBtn = document.getElementById("searchBtn");
 const searchInp = document.getElementById("searchInp");
 const searchForm = document.getElementById("searchForm");
+const forecastDiv = document.getElementById("forecastDiv");
 
 // render function
-function renderDOM(appData) {
+function renderDOM(appData, hourlyForecast) {
   conditionDescDiv.textContent = appData.weather.conditionDesc;
   locationDiv.textContent = `${appData.location.city}, ${appData.location.country}`;
   dayDateDiv.textContent = new Date(appData.weather.last_updated_date)
@@ -112,13 +113,41 @@ function renderDOM(appData) {
   humidityDiv.textContent = `${appData.weather.humidity}%`;
   rainDiv.textContent = `${appData.weather.rain}mm`;
   windDiv.textContent = `${appData.weather.wind_speed}km/h`;
+
+  forecastDiv.innerHTML = "";
+  for (let block of hourlyForecast) {
+    const forecastItemDiv = document.createElement("div");
+    forecastItemDiv.className = "forecastItem";
+
+    const forecastTimeDiv = document.createElement("div");
+    forecastTimeDiv.className = "forecastTime";
+    forecastTimeDiv.textContent = block.time;
+    forecastItemDiv.appendChild(forecastTimeDiv);
+
+    const forecastTempDiv = document.createElement("div");
+    forecastTempDiv.className = "forecastTemp";
+    forecastTempDiv.textContent = `${block.temp}°C`;
+    forecastItemDiv.appendChild(forecastTempDiv);
+
+    const forecastImg = document.createElement("img");
+    forecastImg.src = `https://${block.icon}`;
+    forecastItemDiv.appendChild(forecastImg);
+
+    const forecastCondDiv = document.createElement("div");
+    forecastCondDiv.textContent = block.condition;
+    forecastItemDiv.appendChild(forecastCondDiv);
+
+    forecastDiv.appendChild(forecastItemDiv);
+  }
 }
 
 // location search function
 async function searchLocation(city = defaultCity) {
   const apiData = await getCurrentWeather(city);
   const appData = processWeatherData(apiData);
-  renderDOM(appData);
+  const apiForecastData = await getForecastWeather(city);
+  const hourlyForecast = processForecastData(apiForecastData);
+  renderDOM(appData, hourlyForecast);
   searchInp.value = "";
 }
 function handleSubmit(e) {
@@ -137,5 +166,5 @@ window.addEventListener("DOMContentLoaded", async () => {
   const hourlyForecast = processForecastData(apiForecastData);
   console.log(hourlyForecast);
 
-  renderDOM(appCurrentData);
+  renderDOM(appCurrentData, hourlyForecast);
 });
