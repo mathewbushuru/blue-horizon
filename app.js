@@ -64,12 +64,12 @@ const feelsTempDiv = document.getElementById("feelsTemp");
 const humidityDiv = document.getElementById("humidity");
 const rainDiv = document.getElementById("rain");
 const windDiv = document.getElementById("wind");
+const searchBtn = document.getElementById("searchBtn");
+const searchInp = document.getElementById("searchInp");
+const searchForm = document.getElementById("searchForm");
 
-// init app
-window.addEventListener("DOMContentLoaded", async () => {
-  const apiData = await getCurrentWeather();
-  const appData = processWeatherData(apiData);
-
+// render function
+function renderDOM(appData) {
   conditionDescDiv.textContent = appData.weather.conditionDesc;
   locationDiv.textContent = `${appData.location.city}, ${appData.location.country}`;
   dayDateDiv.textContent = new Date(appData.weather.last_updated_date)
@@ -79,8 +79,30 @@ window.addEventListener("DOMContentLoaded", async () => {
     appData.location.localtime
   ).toLocaleTimeString();
   tempDiv.textContent = `${appData.weather.temp_c} °C`;
-  feelsTempDiv.textContent = `${appData.weather.feelslike_c}°C`
-  humidityDiv.textContent = `${appData.weather.humidity}%`
-  rainDiv.textContent = `${appData.weather.rain}mm`
-  windDiv.textContent = `${appData.weather.wind_speed}km/h`
+  feelsTempDiv.textContent = `${appData.weather.feelslike_c}°C`;
+  humidityDiv.textContent = `${appData.weather.humidity}%`;
+  rainDiv.textContent = `${appData.weather.rain}mm`;
+  windDiv.textContent = `${appData.weather.wind_speed}km/h`;
+}
+
+// location search function
+async function searchLocation(city = defaultCity) {
+  const apiData = await getCurrentWeather(city);
+  const appData = processWeatherData(apiData);
+  renderDOM(appData);
+  searchInp.value = "";
+}
+function handleSubmit(e) {
+  e.preventDefault();
+  searchLocation(searchInp.value);
+}
+searchBtn.addEventListener("click", handleSubmit);
+searchForm.addEventListener("submit", handleSubmit);
+
+// init app
+window.addEventListener("DOMContentLoaded", async () => {
+  const apiData = await getCurrentWeather();
+  const appData = processWeatherData(apiData);
+
+  renderDOM(appData);
 });
