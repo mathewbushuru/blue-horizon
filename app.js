@@ -22,6 +22,17 @@ async function getCurrentWeather(city = defaultCity) {
   }
 }
 
+// get current weather
+async function getForecastWeather(city = defaultCity) {
+  try {
+    const response = await fetch(`${API_URL_FORECAST}&q=${city}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // process weather data
 function processWeatherData(apiData) {
   const weatherData = apiData.current;
@@ -52,6 +63,24 @@ function processWeatherData(apiData) {
   };
 
   return appData;
+}
+
+// process forecast data
+function processForecastData(apiForecastData) { 
+  const completeHourlyForecast = apiForecastData.forecast.forecastday[0].hour;
+  const eachThreeHrForecast = completeHourlyForecast.filter((value, index) => {
+    return index % 3 == 0;
+  });
+  const hourlyForecast = eachThreeHrForecast.map((value) => {
+    return {
+      condition: value.condition.text,
+      icon: value.condition.icon.split("//")[1],
+      time: value.time.split(" ")[1],
+      temp: value.temp_c,
+    };
+  });
+
+  return hourlyForecast;
 }
 
 // DOM nodes
@@ -101,8 +130,12 @@ searchForm.addEventListener("submit", handleSubmit);
 
 // init app
 window.addEventListener("DOMContentLoaded", async () => {
-  const apiData = await getCurrentWeather();
-  const appData = processWeatherData(apiData);
+  const apiCurrentData = await getCurrentWeather();
+  const appCurrentData = processWeatherData(apiCurrentData);
 
-  renderDOM(appData);
+  const apiForecastData = await getForecastWeather();
+  const hourlyForecast = processForecastData(apiForecastData);
+  console.log(hourlyForecast);
+
+  renderDOM(appCurrentData);
 });
